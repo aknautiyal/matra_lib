@@ -1,5 +1,7 @@
 mod varn;
+mod shabd;
 pub use varn::{Varn, VarnType, VarnList};
+pub use shabd::{Akshar, Shabd};
 
 #[cfg(test)]
 mod tests {
