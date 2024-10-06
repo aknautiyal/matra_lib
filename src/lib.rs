@@ -1,5 +1,5 @@
 mod varn;
-pub use varn::{Varn, VarnType};
+pub use varn::{Varn, VarnType, VarnList};
 
 #[cfg(test)]
 mod tests {

@@ -108,6 +108,35 @@ impl Varn {
     }
 }
 
+#[derive(Debug, Clone)]
+pub struct VarnList {
+    pub varns: Vec<Varn>,
+}
+
+impl VarnList {
+    pub fn new() -> Self {
+        VarnList {
+            varns: Vec::new(),
+        }
+    }
+
+    pub fn push(&mut self, new_varn: Varn) {
+        self.varns.push(new_varn);
+    }
+
+    pub fn pop(&mut self) -> Option<Varn> {
+        self.varns.pop()
+    }
+
+    pub fn copy(&self) -> VarnList {
+        self.clone()
+    }
+
+    pub fn reverse(&mut self) {
+        self.varns.reverse();
+    }
+}
+
 /* Tests */
 
 #[cfg(test)]
@@ -185,5 +214,65 @@ mod tests {
     fn test_is_chihn() {
         let varn = Varn::from_char('ा');
         assert!(varn.is_chihn());
+    }
+
+    #[test]
+    fn test_varnlist_initialization() {
+        let list = VarnList::new();
+        assert_eq!(list.varns.len(), 0);
+    }
+
+    #[test]
+    fn test_varnlist_push() {
+        let mut list = VarnList::new();
+        let varn = Varn::from_char('अ');
+        list.push(varn);
+        assert_eq!(list.varns.len(), 1);
+        assert_eq!(list.varns[0].get_symbol(), 'अ');
+    }
+
+    #[test]
+    fn test_varnlist_pop() {
+        let mut list = VarnList::new();
+        let varn = Varn::from_char('क');
+        list.push(varn);
+        let popped_varn = list.pop().unwrap();
+        assert_eq!(popped_varn.get_symbol(), 'क');
+        assert_eq!(list.varns.len(), 0);
+    }
+
+    #[test]
+    fn test_varnlist_copy() {
+        let mut list = VarnList::new();
+        list.push(Varn::from_char('अ'));
+        list.push(Varn::from_char('क'));
+
+        // Create a copy of the list
+        let list_copy = list.copy();
+
+        // Test that the original and the copy have the same length and values
+        assert_eq!(list.varns.len(), list_copy.varns.len());
+        assert_eq!(list.varns[0].get_symbol(), list_copy.varns[0].get_symbol());
+        assert_eq!(list.varns[1].get_symbol(), list_copy.varns[1].get_symbol());
+
+        // Ensure that modifying the copy doesn't affect the original
+        let mut list_copy = list.copy();
+        list_copy.push(Varn::from_char('ग'));
+        assert_eq!(list_copy.varns.len(), 3);
+        assert_eq!(list.varns.len(), 2); // Original should remain unchanged
+    }
+
+    #[test]
+    fn test_varnlist_reverse() {
+        let mut list = VarnList::new();
+        list.push(Varn::from_char('अ'));
+        list.push(Varn::from_char('क'));
+        list.push(Varn::from_char('ग'));
+
+        list.reverse();
+
+        assert_eq!(list.varns[0].get_symbol(), 'ग');
+        assert_eq!(list.varns[1].get_symbol(), 'क');
+        assert_eq!(list.varns[2].get_symbol(), 'अ');
     }
 }
