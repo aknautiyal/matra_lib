@@ -120,6 +120,17 @@ impl VarnList {
         }
     }
 
+    pub fn from_str(input: &str) -> Self {
+        let mut varnlist = VarnList::new();
+
+        for c in input.chars() {
+            let varn = Varn::from_char(c);
+            varnlist.push(varn);
+        }
+
+        varnlist
+    }
+
     pub fn push(&mut self, new_varn: Varn) {
         self.varns.push(new_varn);
     }
@@ -220,6 +231,16 @@ mod tests {
     fn test_varnlist_initialization() {
         let list = VarnList::new();
         assert_eq!(list.varns.len(), 0);
+    }
+
+    #[test]
+    fn test_varnlist_from_str() {
+        let input = "रमण";
+        let varnlist = VarnList::from_str(input);
+        assert_eq!(varnlist.varns.len(), 3);
+        assert_eq!(varnlist.varns[0].get_symbol(), 'र');
+        assert_eq!(varnlist.varns[1].get_symbol(), 'म');
+        assert_eq!(varnlist.varns[2].get_symbol(), 'ण');
     }
 
     #[test]
