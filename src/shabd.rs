@@ -127,4 +127,13 @@ impl Shabd {
         self.akshars.reverse();
         self.base = cp.copy();
     }
+
+    pub fn from_str(input: &str) -> Self {
+        let mut shabd = Shabd::new();
+        shabd.base = VarnList::from_str(input);
+        shabd.make_akshars();
+        shabd.get_matra();
+
+        shabd
+    }
 }
