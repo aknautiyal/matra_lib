@@ -112,3 +112,20 @@ fn test_shabd_get_matra() {
 
     assert_eq!(shabd.matra, 3); // Total matra should be the sum of all Akshars
 }
+
+#[test]
+fn test_shabd_from_str() {
+    let input = "रमण";
+    let shabd = Shabd::from_str(input);
+
+    assert_eq!(shabd.base.varns.len(), 3); // Checking if VarnList was created correctly
+    assert_eq!(shabd.base.varns[0].get_symbol(), 'र');
+    assert_eq!(shabd.base.varns[1].get_symbol(), 'म');
+    assert_eq!(shabd.base.varns[2].get_symbol(), 'ण');
+
+    // Test akshar processing
+    assert_eq!(shabd.akshars.len(), 3);
+    assert_eq!(shabd.akshars[0].akshar.varns[0].get_symbol(), 'र');
+    assert_eq!(shabd.akshars[1].akshar.varns[0].get_symbol(), 'म');
+    assert_eq!(shabd.akshars[2].akshar.varns[0].get_symbol(), 'ण');
+}
