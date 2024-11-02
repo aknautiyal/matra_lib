@@ -1,11 +1,13 @@
 mod varn;
 mod shabd;
+mod charan;
 pub use varn::{Varn, VarnType, VarnList};
 pub use shabd::{Akshar, Shabd};
+pub use charan::Charan;
 
 #[cfg(test)]
 mod tests {
-    use crate::{Varn, Shabd};
+    use crate::{Varn, Shabd, Charan};
 
     #[test]
     fn test_varn_initialization() {
@@ -27,5 +29,15 @@ mod tests {
         let shabd = Shabd::from_str("राम");
         assert_eq!(shabd.base.varns.len(), 3);
         assert_eq!(shabd.base.varns[0].get_symbol(), 'र');
+
+        let sentence = "सीता राम राधे श्याम";
+        let charan = Charan::from_str(sentence);
+
+        assert_eq!(charan.shabds.len(), 4);
+        assert_eq!(charan.shabds[0].base.varns[0].get_symbol(), 'स');
+        assert_eq!(charan.shabds[1].base.varns[0].get_symbol(), 'र');
+        assert_eq!(charan.shabds[2].base.varns[0].get_symbol(), 'र');
+        assert_eq!(charan.shabds[3].base.varns[0].get_symbol(), 'श');
+
     }
 }
