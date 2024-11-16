@@ -16,4 +16,12 @@ impl Charan {
 
         Charan { shabds, matra }
     }
+
+    pub fn analysis(&self) -> String {
+        let mut result = String::new();
+        for s in &self.shabds {
+            result.push_str(&format!("{} ", s.matra));
+        }
+        result.trim_end().to_string()
+    }
 }

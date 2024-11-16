@@ -40,4 +40,13 @@ mod tests {
         assert_eq!(charan.shabds[3].base.varns[0].get_symbol(), 'श');
 
     }
+
+    #[test]
+    fn test_charan_integration_analysis() {
+        let input = "राम सीता"; //
+        let charan = Charan::from_str(input);
+
+        let expected_analysis = format!("{} {}", charan.shabds[0].matra, charan.shabds[1].matra);
+        assert_eq!(charan.analysis(), expected_analysis);
+    }
 }
