@@ -146,6 +146,14 @@ impl VarnList {
     pub fn reverse(&mut self) {
         self.varns.reverse();
     }
+
+    pub fn to_str(&self) -> String {
+        let mut result = String::new();
+        for varn in &self.varns {
+            result.push(varn.get_symbol());
+        }
+        result
+    }
 }
 
 /* Tests */
@@ -295,5 +303,18 @@ mod tests {
         assert_eq!(list.varns[0].get_symbol(), 'ग');
         assert_eq!(list.varns[1].get_symbol(), 'क');
         assert_eq!(list.varns[2].get_symbol(), 'अ');
+    }
+
+    #[test]
+    fn test_varnlist_to_str() {
+        let mut varn_list = VarnList::new();
+        let varn1 = Varn::from_char('र');
+        let varn2 = Varn::from_char('ा');
+        let varn3 = Varn::from_char('म');
+        varn_list.push(varn1);
+        varn_list.push(varn2);
+        varn_list.push(varn3);
+        let result = varn_list.to_str();
+        assert_eq!(result, "राम");
     }
 }
