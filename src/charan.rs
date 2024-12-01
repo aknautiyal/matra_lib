@@ -17,11 +17,36 @@ impl Charan {
         Charan { shabds, matra }
     }
 
-    pub fn analysis(&self) -> String {
-        let mut result = String::new();
+    pub fn analysis(&self) -> (String, String) {
+        let mut result_akshar = String::new();
+        let mut result_matra = String::new();
+        let mut akshar_count = 0;
+
         for s in &self.shabds {
-            result.push_str(&format!("{} ", s.matra));
+
+            result_akshar.push_str(&format!("{{"));
+            result_matra.push_str(&format!("{{"));
+            let mut c = 0;
+            for a in &s.akshars {
+                result_akshar.push_str(&format!("{}", a.akshar.to_str()));
+                result_matra.push_str(&format!("{}", a.matra));
+                c = c + 1;
+                if c != s.akshars.len() {
+                    result_akshar.push_str(&format!(","));
+                    result_matra.push_str(&format!(","));
+                }
+            }
+            result_akshar.push_str(&format!("}} "));
+            result_matra.push_str(&format!("}} "));
+
+            akshar_count = akshar_count + s.akshars.len();
         }
-        result.trim_end().to_string()
+        result_akshar.push_str(&format!("= {} ", akshar_count));
+        result_matra.push_str(&format!("= {} ", self.matra));
+
+        (
+            result_akshar.trim_end().to_string(),
+            result_matra.trim_end().to_string(),
+        )
     }
 }

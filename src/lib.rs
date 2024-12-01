@@ -46,7 +46,7 @@ mod tests {
         let input = "राम सीता"; //
         let charan = Charan::from_str(input);
 
-        let expected_analysis = format!("{} {}", charan.shabds[0].matra, charan.shabds[1].matra);
+        let expected_analysis = (format!("{{रा,म}} {{सी,ता}} = 4"), format!("{{2,1}} {{2,2}} = 7"));
         assert_eq!(charan.analysis(), expected_analysis);
     }
 }
