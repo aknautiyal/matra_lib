@@ -114,6 +114,14 @@ fn test_shabd_get_matra() {
 }
 
 #[test]
+fn test_shabd_get_akshar_count() {
+    let input = "श्याम";
+    let shabd = Shabd::from_str(input);
+
+    assert_eq!(shabd.akshar_count, 2);
+}
+
+#[test]
 fn test_shabd_from_str() {
     let input = "रमण";
     let shabd = Shabd::from_str(input);

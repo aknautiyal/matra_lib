@@ -19,6 +19,7 @@ pub struct Shabd {
     pub base: VarnList,
     pub akshars: Vec<Akshar>,
     pub matra: u32,
+    pub akshar_count: u32, /* Not counting the akshars with 0 matra */
 }
 
 impl Shabd {
@@ -27,6 +28,7 @@ impl Shabd {
                 base: VarnList::new(),
                 akshars: Vec::new(),
                 matra: 0,
+                akshar_count: 0,
         }
     }
 
@@ -37,11 +39,21 @@ impl Shabd {
         }
     }
 
+    pub fn get_akshar_count(&mut self) {
+        self.akshar_count = 0;
+        for akshar in self.akshars.iter() {
+            if akshar.matra != 0 {
+                self.akshar_count += 1;
+            }
+        }
+    }
+
     pub fn new_from_list(varnlist: VarnList) -> Self {
         Shabd {
                 base: varnlist,
                 akshars: Vec::new(),
                 matra: 0,
+                akshar_count: 0,
         }
     }
 
@@ -133,6 +145,7 @@ impl Shabd {
         let mut shabd = Shabd::new_from_list(varnlist);
         shabd.make_akshars();
         shabd.get_matra();
+        shabd.get_akshar_count();
 
         shabd
     }
