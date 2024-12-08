@@ -43,10 +43,10 @@ mod tests {
 
     #[test]
     fn test_charan_integration_analysis() {
-        let input = "राम सीता"; //
+        let input = "सीता राम राधे श्याम";
         let charan = Charan::from_str(input);
 
-        let expected_analysis = (format!("{{रा,म}} {{सी,ता}} = 4"), format!("{{2,1}} {{2,2}} = 7"));
+        let expected_analysis = (format!("{{सी,ता}} {{रा,म}} {{रा,धे}} {{श्,या,म}} = 8"), format!("{{2,2}} {{2,1}} {{2,2}} {{0,2,1}} = 14"));
         assert_eq!(charan.analysis(), expected_analysis);
     }
 }

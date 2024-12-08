@@ -39,7 +39,7 @@ impl Charan {
             result_akshar.push_str(&format!("}} "));
             result_matra.push_str(&format!("}} "));
 
-            akshar_count = akshar_count + s.akshars.len();
+            akshar_count = akshar_count + s.akshar_count;
         }
         result_akshar.push_str(&format!("= {} ", akshar_count));
         result_matra.push_str(&format!("= {} ", self.matra));
