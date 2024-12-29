@@ -64,10 +64,24 @@ impl Shabd {
         self.akshars.push(a);
     }
 
+    fn add_matra(a : u32, b: u32) -> u32 {
+        if a == 1 && b == 1 {
+            return 1;
+        }
+        if a == 2 || b == 2 {
+            return 2;
+        }
+        0
+    }
+
     pub fn process_chihn(&mut self, varn: Varn) {
         let mut a = Akshar::new();
         a.matra = varn.get_matra();
         while let Some(v) = self.base.pop() {
+            a.matra = Self::add_matra(a.matra, v.get_matra());
+            if a.matra > 2 {
+                a.matra = 2;
+            }
             if v.is_chihn() {
                 a.akshar.push(v);
                 continue;

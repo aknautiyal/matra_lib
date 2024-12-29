@@ -137,3 +137,72 @@ fn test_shabd_from_str() {
     assert_eq!(shabd.akshars[1].akshar.varns[0].get_symbol(), 'म');
     assert_eq!(shabd.akshars[2].akshar.varns[0].get_symbol(), 'ण');
 }
+
+#[test]
+fn test_shabd_matra() {
+
+    let mut input = "नमन";
+    let mut shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 1);
+    assert_eq!(shabd.akshars[1].matra, 1);
+    assert_eq!(shabd.akshars[2].matra, 1);
+
+    input = "तुलसी";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 1);
+    assert_eq!(shabd.akshars[1].matra, 1);
+    assert_eq!(shabd.akshars[2].matra, 2);
+
+    input = "हरीश";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 1);
+    assert_eq!(shabd.akshars[1].matra, 2);
+    assert_eq!(shabd.akshars[2].matra, 1);
+
+    input = "कुमारी";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 1);
+    assert_eq!(shabd.akshars[1].matra, 2);
+    assert_eq!(shabd.akshars[2].matra, 2);
+
+    input = "सावन";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 2);
+    assert_eq!(shabd.akshars[1].matra, 1);
+    assert_eq!(shabd.akshars[2].matra, 1);
+
+    input = "मानुषी";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 2);
+    assert_eq!(shabd.akshars[1].matra, 1);
+    assert_eq!(shabd.akshars[2].matra, 2);
+
+    input = "राधेय";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 2);
+    assert_eq!(shabd.akshars[1].matra, 2);
+    assert_eq!(shabd.akshars[2].matra, 1);
+
+    input = "सावित्री";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 2);
+    assert_eq!(shabd.akshars[1].matra, 2);
+    assert_eq!(shabd.akshars[2].matra, 2);
+
+    input = "पंकज";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 2);
+    assert_eq!(shabd.akshars[1].matra, 1);
+    assert_eq!(shabd.akshars[2].matra, 1);
+
+    input = "पांडव";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 2);
+    assert_eq!(shabd.akshars[1].matra, 1);
+    assert_eq!(shabd.akshars[2].matra, 1);
+
+    input = "बिंदु";
+    shabd = Shabd::from_str(input);
+    assert_eq!(shabd.akshars[0].matra, 2);
+    assert_eq!(shabd.akshars[1].matra, 1);
+}
