@@ -42,7 +42,7 @@ impl Varn {
             'प'|'फ'|'ब'|'भ'|'म'|
             'य'|'र'|'ल'|'व'|'श'|'स'|'ष'|'ह' => vtype = VarnType::VYANJAN,
 
-            'ा'|'ि'|'ी'|'ु'|'ू'|'ो'|'ौ'|'े'|'ै'|'ृ'|'ः'|'ँ'|'ं'|'ऽ' => vtype = VarnType::CHIHN,
+            'ा'|'ि'|'ी'|'ु'|'ू'|'ो'|'ौ'|'े'|'ै'|'ृ'|'ः'|'ँ'|'ं'|'ऽ'|'़' => vtype = VarnType::CHIHN,
             '्' => vtype = VarnType::HALANT,
 
             _=> vtype = VarnType::OTHERS,

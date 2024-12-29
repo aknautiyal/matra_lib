@@ -222,4 +222,12 @@ fn test_shabd_with_chihn() {
     assert_eq!(shabd.akshars.len(), 2);
     assert_eq!(shabd.matra, 3);
     assert_eq!(shabd.akshars[0].matra, 2);
+
+    input  = "पढ़";
+    shabd = Shabd::from_str(input);
+
+    assert_eq!(shabd.akshars.len(), 2);
+    assert_eq!(shabd.matra, 2);
+    assert_eq!(shabd.akshars[0].matra, 1);
+    assert_eq!(shabd.akshars[1].matra, 1);
 }
