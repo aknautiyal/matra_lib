@@ -206,3 +206,20 @@ fn test_shabd_matra() {
     assert_eq!(shabd.akshars[0].matra, 2);
     assert_eq!(shabd.akshars[1].matra, 1);
 }
+
+#[test]
+fn test_shabd_with_chihn() {
+    let mut input = "हँस";
+    let mut shabd = Shabd::from_str(input);
+
+    assert_eq!(shabd.akshars.len(), 2);
+    assert_eq!(shabd.matra, 2);
+    assert_eq!(shabd.akshars[0].matra, 1);
+
+    input = "गाँव";
+    shabd = Shabd::from_str(input);
+
+    assert_eq!(shabd.akshars.len(), 2);
+    assert_eq!(shabd.matra, 3);
+    assert_eq!(shabd.akshars[0].matra, 2);
+}
